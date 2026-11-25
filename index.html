@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Metadatos, tipografías externas y biblioteca de gráficos. -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#163b38">
-  <meta name="description" content="Aplicación académica para explorar una población con estadística descriptiva, tablas de frecuencia, momentos y gráficos interactivos.">
-  <title>Estadística Descriptiva | UTP</title>
+  <meta name="description" content="Cuaderno virtual de Estadística, Teoría de Conjuntos y Probabilidad para Ingeniería de Sistemas — Universidad Tecnológica de Pereira, 2026-2.">
+  <title>Estadística | UTP · Pereira 2026-2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="probabilidad.css">
   <style>
-    /* Variables visuales y estilos base compartidos por el cuaderno. */
     :root {
       color-scheme: light;
       --paper: #f4f4ed;
@@ -53,7 +52,6 @@
     button, input, select, textarea { font: inherit; }
     button { cursor: pointer; }
     a { color: inherit; }
-    /* Componentes reutilizables: encabezado, títulos y módulos estadísticos. */
     .topbar {
       position: sticky;
       z-index: 20;
@@ -173,7 +171,6 @@
     .section-heading h2 { margin: 0 0 3px; font-family: var(--font-display); font-size: 17px; line-height: 1.25; }
     .section-heading p { margin: 0; color: var(--muted); font-size: 12px; }
     .section-tag { padding: 5px 9px; border-radius: 4px; color: #55716a; background: #edf3f0; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
-    /* Formularios, controles de importación y estados de validación. */
     .data-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(270px, .8fr); gap: 20px; }
     .field-label { display: block; margin-bottom: 7px; color: #334e49; font-size: 12px; font-weight: 700; }
     textarea {
@@ -255,7 +252,6 @@
     .notice.warning { color: #86521e; background: #fff4df; }
     .notice.error { color: #973f34; background: #fff0ed; }
     .notice.success { color: #2f644f; background: #eaf5ee; }
-    /* Indicadores, resultados y mensajes interpretativos. */
     .dashboard-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 19px; }
     .metric-card {
       position: relative;
@@ -289,7 +285,6 @@
     .flag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border: 1px solid #dce7df; border-radius: 4px; color: #426353; background: #f2f7f2; font-size: 10px; font-weight: 700; }
     .flag.warn { border-color: #f0dcc1; color: #8c5d23; background: #fff8eb; }
     .flag.alert { border-color: #f1d1c9; color: #9b4538; background: #fff2ee; }
-    /* Tablas, datos de vista previa y contenedores de gráficos. */
     .table-wrap { overflow-x: auto; border: 1px solid #e4eae4; border-radius: 5px; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; white-space: nowrap; }
     th, td { padding: 9px 10px; border-bottom: 1px solid #edf0eb; text-align: right; }
@@ -317,26 +312,11 @@
     .chart-canvas { position: relative; height: 255px; }
     .chart-panel.wide .chart-canvas { height: 285px; }
     .chart-note { margin: 8px 0 0; color: #7b8983; font-size: 10px; }
-    .kurtosis-visual { margin-top: 15px; }
-    .kurtosis-chart { display: block; width: 100%; height: auto; }
-    .kurtosis-grid { stroke: #e5ebe5; stroke-width: 1; }
-    .kurtosis-axis-labels, .kurtosis-summary { fill: #687a73; font-family: var(--font-body); font-size: 11px; }
-    .kurtosis-curve { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-    .kurtosis-curve.observed { stroke: var(--coral); }
-    .kurtosis-curve.reference { stroke: var(--forest); stroke-width: 2; stroke-dasharray: 6 4; }
-    .kurtosis-mean { stroke: var(--blue); stroke-width: 1.5; stroke-dasharray: 3 4; }
-    .kurtosis-empty { fill: #687a73; font-family: var(--font-body); font-size: 14px; }
-    .kurtosis-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; color: #52655e; font-size: 11px; }
-    .kurtosis-legend span { display: inline-flex; align-items: center; gap: 7px; }
-    .kurtosis-legend i { width: 17px; height: 3px; border-radius: 2px; }
-    .kde-swatch { background: var(--coral); }
-    .normal-swatch { background: var(--forest); }
     .empty-chart { display: grid; height: 100%; place-items: center; color: #89968f; font-size: 12px; }
     .footnote { display: flex; justify-content: space-between; gap: 16px; margin-top: 20px; padding: 12px 2px 0; border-top: 1px solid #dce4dc; color: #75837c; font-size: 11px; }
     .mono { font-family: var(--font-mono); }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; clip-path: inset(50%); }
 
-    /* Ajustes del diseño anterior al cuaderno para pantallas pequeñas. */
     @media (max-width: 960px) {
       .page { padding: 25px 20px 50px; }
       .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -370,7 +350,6 @@
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     }
 
-    /* Distribución de la aplicación como cuaderno virtual de páginas. */
     html, body { width: 100%; height: 100%; max-height: 100%; overflow: hidden; }
     .notebook-app { display: flex; flex: 1 1 auto; flex-direction: column; width: 100%; min-height: 0; max-height: calc(100vh - 52px); }
     body {
@@ -428,7 +407,6 @@
         linear-gradient(to right, #08101b, #1d3853 38%, #a8c5d4 50%, #1d3853 62%, #08101b);
       box-shadow: 0 0 18px rgba(0, 0, 0, .72), inset 0 0 9px rgba(0, 0, 0, .6);
     }
-    /* Una página permanece oculta hasta que JavaScript la marca como activa. */
     .notebook-page {
       position: relative;
       display: none;
@@ -461,7 +439,6 @@
     .cover-image-container img { display: block; width: 100%; height: 100%; object-fit: contain; }
     .notebook-page.page-cover { justify-content: center; }
     .cover-image-container { flex: 1 1 auto; width: 100%; height: 100%; }
-    /* Cabeceras de página, contenido desplazable y controles de navegación. */
     .page-content-wrapper { flex: 1; min-height: 0; overflow: auto; padding: 26px 34px 30px; scrollbar-color: #8bb9d0 #eef4f7; scrollbar-width: thin; }
     .page-header-banner { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 19px; padding-bottom: 9px; border-bottom: 1px solid #c7dce8; color: #376785; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
     .page-number-tag { color: #71879a; white-space: nowrap; }
@@ -504,7 +481,6 @@
     .notebook-page .table-wrap { background: rgba(255,255,255,.93); }
     .notebook-page .file-box { background: rgba(247,250,252,.92); }
     .notebook-page .page-content-wrapper > .section-card { min-height: 100%; }
-    /* En escritorio se muestran dos páginas; en móvil se muestra una. */
     @media (min-width: 1024px) {
       .notebook-stage.stage-open .notebook-spine { display: block; }
       .notebook-stage.stage-open .notebook-page.active { flex: 1 1 0; width: 0; }
@@ -540,7 +516,6 @@
       .notebook-page .chart-grid { grid-template-columns: 1fr; }
       .notebook-page .chart-panel.wide { grid-column: auto; }
     }
-    /* Tipografía ampliada y estilos de fórmulas para lectura dentro del cuaderno. */
     .notebook-page .page-header-banner { font-size: 13px; }
     .notebook-page .page-title { font-size: 28px; }
     .notebook-page .page-subtitle { color: #465f70; font-size: 16px; }
@@ -564,7 +539,6 @@
     .notebook-page .result-row span:first-child { color: #4a626f; }
     .notebook-page .result-row strong { font-size: 15px; }
     .notebook-page .interpretation { font-size: 15px; }
-    /* Presentación de fórmulas, pasos de cuantiles y fórmulas de varianza. */
     .formula-sheet { margin-top: 16px; padding: 14px 16px; border-left: 4px solid #347d9d; border-radius: 0 5px 5px 0; background: rgba(233, 243, 248, .94); }
     .formula-sheet h3 { margin: 0 0 9px; color: #204d67; font-family: var(--font-display); font-size: 16px; }
     .formula-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
@@ -626,17 +600,15 @@
     <div class="notebook-viewport">
       <div class="notebook-stage stage-closed" id="notebookStage">
         <div class="notebook-spine" id="notebookSpine" aria-hidden="true"></div>
-        <!-- Portada del cuaderno; las páginas temáticas se activan desde los controles inferiores. -->
         <section class="notebook-page page-cover active" id="page-cover" aria-label="Cubierta del cuaderno virtual">
           <div class="cover-image-container">
             <img src="imagenes/portada.png" alt="Portada del cuaderno virtual de Análisis Estadístico, UTP">
           </div>
         </section>
 
-        <!-- Página 1: entrada de datos, selección de variable y validación. -->
         <section class="notebook-page" id="page-1" aria-labelledby="gestion-title">
           <div class="page-content-wrapper">
-            <div class="page-header-banner"><span class="unit-label">Unidad I · Datos y población</span><span class="page-number-tag">Página 1 de 8</span></div>
+            <div class="page-header-banner"><span class="unit-label">Unidad I · Datos y población</span><span class="page-number-tag">Página 1 de 16</span></div>
     <section class="section-card" id="gestion" aria-labelledby="gestion-title">
       <div class="section-heading">
         <div class="heading-group"><span class="module-number">01</span><div><h2 id="gestion-title">Gestión e identificación de datos</h2><p>Ingresa observaciones de una población o una muestra, o carga una columna desde un archivo.</p></div></div>
@@ -716,10 +688,9 @@
           </div>
         </section>
 
-        <!-- Página 2: ordenamiento y tabla de frecuencias. -->
         <section class="notebook-page" id="page-2" aria-labelledby="organization-title">
           <div class="page-content-wrapper">
-            <div class="page-header-banner"><span class="unit-label">Unidad I · Organización</span><span class="page-number-tag">Página 2 de 8</span></div>
+            <div class="page-header-banner"><span class="unit-label">Unidad I · Organización</span><span class="page-number-tag">Página 2 de 16</span></div>
     <section class="section-card" id="organizacion" aria-labelledby="organization-title">
       <div class="section-heading">
         <div class="heading-group"><span class="module-number coral">02</span><div><h2 id="organization-title">Organización de datos</h2><p>Orden ascendente y descendente; distribución de frecuencias verificable.</p></div></div>
@@ -751,10 +722,9 @@
           </div>
         </section>
 
-        <!-- Página 3: media, mediana y moda. -->
         <section class="notebook-page" id="page-3" aria-labelledby="central-title">
           <div class="page-content-wrapper">
-            <div class="page-header-banner"><span class="unit-label">Unidad II · Tendencia central</span><span class="page-number-tag">Página 3 de 8</span></div>
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Tendencia central</span><span class="page-number-tag">Página 3 de 16</span></div>
       <section class="section-card" id="central" aria-labelledby="central-title">
         <div class="section-heading"><div class="heading-group"><span class="module-number gold">03</span><div><h2 id="central-title">Tendencia central</h2><p>Centro de la distribución observada.</p></div></div></div>
         <div class="result-list">
@@ -777,10 +747,9 @@
           </div>
         </section>
 
-        <!-- Página 4: cuartiles y rango intercuartílico. -->
         <section class="notebook-page" id="page-4" aria-labelledby="position-title">
           <div class="page-content-wrapper">
-            <div class="page-header-banner"><span class="unit-label">Unidad II · Medidas de posición</span><span class="page-number-tag">Página 4 de 8</span></div>
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Medidas de posición</span><span class="page-number-tag">Página 4 de 16</span></div>
       <section class="section-card" id="posicion" aria-labelledby="position-title">
         <div class="section-heading"><div class="heading-group"><span class="module-number blue">04</span><div><h2 id="position-title">Medidas de posición</h2><p>Cuartiles por interpolación lineal.</p></div></div></div>
         <div class="result-list">
@@ -803,10 +772,9 @@
           </div>
         </section>
 
-        <!-- Página 5: rango, varianza, desviación estándar y coeficiente de variación. -->
         <section class="notebook-page" id="page-5" aria-labelledby="dispersion-title">
           <div class="page-content-wrapper">
-            <div class="page-header-banner"><span class="unit-label">Unidad III · Dispersión</span><span class="page-number-tag">Página 5 de 8</span></div>
+            <div class="page-header-banner"><span class="unit-label">Unidad III · Dispersión</span><span class="page-number-tag">Página 5 de 16</span></div>
       <section class="section-card" id="dispersion" aria-labelledby="dispersion-title">
         <div class="section-heading"><div class="heading-group"><span class="module-number coral">05</span><div><h2 id="dispersion-title">Medidas de dispersión</h2><p>Variabilidad absoluta y relativa de los datos.</p></div></div></div>
         <div class="result-list">
@@ -844,10 +812,9 @@
           </div>
         </section>
 
-        <!-- Página 6: posibles valores atípicos según la regla de Tukey. -->
         <section class="notebook-page" id="page-6" aria-labelledby="outlier-title">
           <div class="page-content-wrapper">
-            <div class="page-header-banner"><span class="unit-label">Unidad III · Atípicos</span><span class="page-number-tag">Página 6 de 8</span></div>
+            <div class="page-header-banner"><span class="unit-label">Unidad III · Atípicos</span><span class="page-number-tag">Página 6 de 16</span></div>
       <section class="section-card" id="atipicos" aria-labelledby="outlier-title">
         <div class="section-heading"><div class="heading-group"><span class="module-number gold">06</span><div><h2 id="outlier-title">Detección de valores atípicos</h2><p>Regla de Tukey: límites Q₁ − 1.5 RIC y Q₃ + 1.5 RIC.</p></div></div></div>
         <div class="result-list">
@@ -872,10 +839,9 @@
           </div>
         </section>
 
-        <!-- Página 7: momentos centrales, asimetría y exceso de curtosis. -->
         <section class="notebook-page" id="page-7" aria-labelledby="moments-title">
           <div class="page-content-wrapper">
-            <div class="page-header-banner"><span class="unit-label">Unidad IV · Momentos estadísticos</span><span class="page-number-tag">Página 7 de 8</span></div>
+            <div class="page-header-banner"><span class="unit-label">Unidad IV · Momentos estadísticos</span><span class="page-number-tag">Página 7 de 16</span></div>
     <section class="section-card" id="momentos" aria-labelledby="moments-title">
       <div class="section-heading"><div class="heading-group"><span class="module-number blue">07</span><div><h2 id="moments-title">Momentos estadísticos</h2><p>Momentos centrales descriptivos y coeficientes estandarizados.</p></div></div><span class="section-tag">Fisher · Pearson menos 3</span></div>
       <div class="three-column">
@@ -895,20 +861,9 @@
         <div>
           <div class="result-row"><span>Exceso de curtosis · γ₂</span><strong id="kurtosisValue">—</strong></div>
           <div class="flag-row" id="kurtosisFlag"><span class="flag">Sin análisis</span></div>
-          <p class="interpretation gold" id="kurtosisInterpretation">La curtosis no es por sí sola un conteo de valores atípicos.</p>
+          <p class="interpretation gold" id="kurtosisInterpretation"> La curtosis no es por sí sola un conteo de valores atípicos.</p>
         </div>
       </div>
-      <article class="kurtosis-visual" aria-labelledby="kurtosisChartTitle">
-        <h3 class="chart-title" id="kurtosisChartTitle">Asimetría y curtosis de los datos</h3>
-        <svg class="kurtosis-chart" id="kurtosisChart" viewBox="0 0 600 290" role="img" aria-label="Curva de densidad de los datos y referencia normal">
-          <text class="kurtosis-empty" x="300" y="145" text-anchor="middle">Carga datos para visualizar su distribución.</text>
-        </svg>
-        <div class="kurtosis-legend" aria-label="Leyenda de curvas">
-          <span><i class="kde-swatch"></i>Densidad estimada de los datos</span>
-          <span><i class="normal-swatch"></i>Normal de referencia</span>
-        </div>
-        <p class="chart-note" id="kurtosisChartNote">El desplazamiento de la curva sólida muestra la asimetría; sus colas, comparadas con la normal discontinua, ayudan a interpretar la curtosis. γ₁ y γ₂ se calculan con los valores originales.</p>
-      </article>
       <p class="field-hint" style="margin-top:12px">Interpretación orientativa: |γ₁| ≤ 0.5 aproximadamente simétrica; exceso de curtosis entre −0.5 y 0.5 aproximadamente mesocúrtica. Estos umbrales son descriptivos, no universales.</p>
     </section>
     <aside class="formula-sheet" aria-label="Fórmulas de momentos, asimetría y curtosis">
@@ -924,16 +879,15 @@
           </div>
         </section>
 
-        <!-- Página 8: gráficos interactivos de frecuencias, caja y proporciones. -->
         <section class="notebook-page" id="page-8" aria-labelledby="charts-title">
           <div class="page-content-wrapper">
-            <div class="page-header-banner"><span class="unit-label">Unidad V · Representación gráfica</span><span class="page-number-tag">Página 8 de 8</span></div>
+            <div class="page-header-banner"><span class="unit-label">Unidad V · Representación gráfica</span><span class="page-number-tag">Página 8 de 16</span></div>
     <section class="section-card" id="graficos" aria-labelledby="charts-title">
       <div class="section-heading"><div class="heading-group"><span class="module-number coral">08</span><div><h2 id="charts-title">Representación gráfica</h2><p>Frecuencias absolutas, acumuladas y proporciones de la distribución.</p></div></div><span class="section-tag">Chart.js · interactivo</span></div>
       <div class="chart-grid">
         <article class="chart-panel wide"><h3 class="chart-title">Frecuencia absoluta por intervalo o valor</h3><div class="chart-canvas"><canvas id="frequencyChart" aria-label="Gráfico de frecuencias absolutas" role="img"></canvas></div><p class="chart-note" id="frequencyChartNote">Barras contiguas para intervalos agrupados; separadas para datos discretos.</p></article>
         <article class="chart-panel"><h3 class="chart-title">Diagrama de caja y bigotes · cuartiles</h3><div class="chart-canvas"><canvas id="boxPlotChart" aria-label="Diagrama de caja y bigotes con cuartiles y posibles atípicos" role="img"></canvas></div><p class="chart-note" id="boxPlotNote">La caja va de Q₁ a Q₃; la línea marca Q₂ (mediana), los bigotes llegan al último valor dentro de 1.5 RIC y los puntos señalan posibles atípicos.</p></article>
-        <article class="chart-panel"><h3 class="chart-title">Distribución porcentual</h3><div class="chart-canvas"><canvas id="shareChart" aria-label="Gráfico circular de proporciones" role="img"></canvas></div><p class="chart-note">Cada sector representa la proporción de una clase o categoría sobre N.</p></article>
+        <article class="chart-panel"><h3 class="chart-title">Distribución porcentual</h3><div class="chart-canvas"><canvas id="shareChart" aria-label="Gráfico circular de proporciones" role="img"></canvas></div><p class="chart-note" id="shareChartNote">Cada sector representa la proporción de una clase o categoría sobre N.</p></article>
       </div>
       <div class="notice info visible" id="chartNotice" role="status">Los gráficos se muestran cuando Chart.js está disponible. Se requiere conexión para cargar la librería CDN.</div>
     </section>
@@ -949,10 +903,255 @@
             <div class="page-bottom-note"><span>Estadística descriptiva · UTP</span><span id="footerSummary">Los datos permanecen en este navegador y no se envían a un servidor.</span></div>
           </div>
         </section>
+
+        <section class="notebook-page prob-page" id="page-9" aria-labelledby="prob-unit-title">
+          <div class="page-content-wrapper">
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Teoría de conjuntos y probabilidad</span><span class="page-number-tag">Página 9 de 16</span></div>
+            <div class="prob-hero">
+              <h2 id="prob-unit-title">UNIDAD II — Teoría de conjuntos y probabilidad</h2>
+              <p>Organiza datos posibles, describe eventos y calcula qué tan probable es que ocurran.</p>
+            </div>
+            <h2 class="page-title">Un nuevo capítulo del cuaderno</h2>
+            <p class="page-subtitle">Concepto primero; notación después; ejemplo; visualización; práctica; comprobación.</p>
+            <div class="prob-concepts">
+              <article class="prob-concept"><strong>Experimento</strong><p>Proceso cuyo resultado no se conoce con certeza antes de observarlo.</p></article>
+              <article class="prob-concept"><strong>Espacio muestral S</strong><p>Conjunto de todos los resultados posibles del experimento.</p></article>
+              <article class="prob-concept"><strong>Evento</strong><p>Subconjunto de resultados que cumple una condición.</p></article>
+              <article class="prob-concept"><strong>Cardinalidad</strong><p>Número de elementos distintos de un conjunto: <code>n(A)</code>.</p></article>
+              <article class="prob-concept"><strong>Probabilidad</strong><p>Para casos equiprobables: <code>P(A) = n(A)/n(S)</code>.</p></article>
+              <article class="prob-concept"><strong>Conjuntos reales</strong><p>Los cálculos siempre proceden de elementos creados o modificados por el estudiante.</p></article>
+            </div>
+            <aside class="formula-sheet">
+              <h3>Recorrido de la unidad</h3>
+              <ul class="formula-list">
+                <li><strong>Fundamentos</strong><code>Conjunto, pertenencia, S, eventos y vacío</code></li>
+                <li><strong>Operaciones</strong><code>∪, ∩, complemento, − y △</code></li>
+                <li><strong>Cardinalidad y probabilidad</strong><code>Conteo directo y fórmulas verificables</code></li>
+              </ul>
+            </aside>
+            <div class="page-bottom-note"><span>Unidad II · Fundamentos</span><span>La probabilidad se calcula solo con conjuntos válidos.</span></div>
+          </div>
+        </section>
+
+        <section class="notebook-page prob-page" id="page-10" aria-labelledby="prob-fundamentals-title">
+          <div class="page-content-wrapper">
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Capítulo 1</span><span class="page-number-tag">Página 10 de 16</span></div>
+            <section class="section-card">
+              <div class="section-heading"><div class="heading-group"><span class="module-number gold">01</span><div><h2 id="prob-fundamentals-title">Fundamentos de teoría de conjuntos</h2><p>Conocer los nombres, elementos y relaciones evita confundir operaciones y probabilidades.</p></div></div></div>
+              <div class="prob-grid">
+                <div class="prob-panel">
+                  <h3>Administra el experimento inicial</h3>
+                  <div class="prob-set-row"><label for="prob-s-input">S</label><input id="prob-s-input" type="text" aria-label="Elementos del espacio muestral"><button id="prob-s-apply" type="button">Aplicar</button></div>
+                  <div class="prob-set-row"><label for="prob-a-input">A</label><input id="prob-a-input" type="text" aria-label="Elementos del evento A"><button id="prob-a-apply" type="button">Aplicar</button></div>
+                  <div class="prob-set-row"><label for="prob-b-input">B</label><input id="prob-b-input" type="text" aria-label="Elementos del evento B"><button id="prob-b-apply" type="button">Aplicar</button></div>
+                  <div class="prob-set-row"><label for="prob-c-input">C</label><input id="prob-c-input" type="text" aria-label="Elementos del evento C"><button id="prob-c-apply" type="button">Aplicar</button></div>
+                  <div class="prob-notice" id="prob-set-notice" role="status"></div>
+                </div>
+                <div class="prob-panel">
+                  <h3>Conjuntos actuales</h3>
+                  <div class="prob-tags"><span class="prob-tag">S = <span id="prob-s-result">{1, 2, 3, 4, 5, 6}</span></span><span class="prob-tag">n(S) = <span id="prob-s-cardinality">6</span></span></div>
+                  <div class="prob-tags" style="margin-top:8px"><span class="prob-tag">A · n = <span id="prob-a-cardinality">3</span></span><span class="prob-tag">B · n = <span id="prob-b-cardinality">3</span></span><span class="prob-tag">C · n = <span id="prob-c-cardinality">3</span></span></div>
+                  <table class="prob-symbol-table" style="margin-top:12px"><thead><tr><th>Concepto</th><th>Ejemplo</th></tr></thead><tbody><tr><td>Pertenencia · <code>x ∈ A</code></td><td>4 pertenece a A.</td></tr><tr><td>Subconjunto · <code>A ⊆ S</code></td><td>Todos los elementos de A están en S.</td></tr><tr><td>Vacío · <code>∅</code></td><td>No contiene elementos.</td></tr><tr><td>Igualdad</td><td>Tienen exactamente los mismos elementos.</td></tr><tr><td>Disyuntos</td><td><code>A ∩ B = ∅</code>.</td></tr></tbody></table>
+                </div>
+              </div>
+            </section>
+            <div class="prob-example"><div><h3>Ejemplo resuelto — dado</h3><ol class="prob-steps"><li><code>S = {1,2,3,4,5,6}</code>.</li><li><code>A = {2,4,6}</code>: números pares.</li><li><code>B = {4,5,6}</code>: 4, 5 o 6.</li><li><code>A ∩ B = {4,6}</code>: están en ambos.</li><li><code>P(A) = 3/6 = 0.5 = 50%</code>.</li></ol></div><aside class="formula-sheet"><h3>Comprobación</h3><code>n(A) = 3, n(S) = 6, n(A)/n(S) = 0.5</code><p class="formula-note">Los elementos repetidos no deben contarse dos veces dentro de un conjunto.</p></aside></div>
+            <div class="page-bottom-note"><span>S, A, B y C son conjuntos reales</span><span>Modificar S revalida los eventos.</span></div>
+          </div>
+        </section>
+
+        <section class="notebook-page prob-page" id="page-11" aria-labelledby="prob-operations-title">
+          <div class="page-content-wrapper">
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Capítulo 2</span><span class="page-number-tag">Página 11 de 16</span></div>
+            <section class="section-card">
+              <div class="section-heading"><div class="heading-group"><span class="module-number coral">02</span><div><h2 id="prob-operations-title">Operaciones entre conjuntos</h2><p>Primero identifica qué elementos cumplen cada condición y luego verifica el resultado.</p></div></div></div>
+              <div class="prob-grid">
+                <div class="prob-panel">
+                  <h3>Selecciona una operación</h3>
+                  <div class="prob-actions">
+                    <button class="active" type="button" data-operation="union">Unión</button>
+                    <button type="button" data-operation="intersection">Intersección</button>
+                    <button type="button" data-operation="complement">Complemento</button>
+                    <button type="button" data-operation="difference">Diferencia</button>
+                    <button type="button" data-operation="symmetric">Diferencia simétrica</button>
+                  </div>
+                  <div class="prob-result"><strong id="prob-operation-title">Unión: A ∪ B</strong><code id="prob-operation-result">{2, 4, 5, 6}</code></div>
+                  <div class="prob-result" style="border-left-color:#c99a3e"><strong>Cardinalidad</strong><code id="prob-operation-cardinality">4</code></div>
+                  <div class="prob-result" style="border-left-color:#4f8f78"><strong>Probabilidad clásica</strong><code id="prob-operation-probability">0.6667 · 66.67%</code></div>
+                </div>
+                <div class="prob-panel">
+                  <h3>Definiciones y ejemplos</h3>
+                  <table class="prob-symbol-table"><thead><tr><th>Operación</th><th>Regla</th><th>Intención</th></tr></thead><tbody><tr><td><code>A ∪ B</code></td><td>Elementos de A o de B</td><td>Reunir ambos eventos</td></tr><tr><td><code>A ∩ B</code></td><td>Elementos comunes</td><td>Coincidencia</td></tr><tr><td><code>Aᶜ</code></td><td><code>S − A</code></td><td>Lo que no está en A</td></tr><tr><td><code>A − B</code></td><td>De A y no de B</td><td>Exclusión</td></tr><tr><td><code>A △ B</code></td><td>Solo en uno de los dos</td><td>Diferencia exclusiva</td></tr></tbody></table>
+                </div>
+              </div>
+            </section>
+            <aside class="formula-sheet"><h3>Ejemplo paso a paso — dado</h3><code>A = {2,4,6}; B = {4,5,6}; S = {1,2,3,4,5,6}</code><div class="prob-example"><ol class="prob-steps"><li><code>A ∪ B = {2,4,5,6}</code>; <code>n = 4</code>.</li><li><code>A ∩ B = {4,6}</code>; <code>n = 2</code>.</li><li><code>Aᶜ = {1,3,5}</code>; <code>n = 3</code>.</li><li><code>A − B = {2}</code>; <code>A △ B = {2,5}</code>.</li></ol><p class="formula-note">Comprueba cada elemento respecto de S y evita contar elementos que aparecen dos veces.</p></div></aside>
+            <div class="page-bottom-note"><span>Operaciones básicas</span><span>Edite los conjuntos en la página anterior para recalcular.</span></div>
+          </div>
+        </section>
+
+        <section class="notebook-page prob-page" id="page-12" aria-labelledby="prob-cardinality-title">
+          <div class="page-content-wrapper">
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Capítulo 3</span><span class="page-number-tag">Página 12 de 16</span></div>
+            <section class="section-card">
+              <div class="section-heading"><div class="heading-group"><span class="module-number blue">03</span><div><h2 id="prob-cardinality-title">Cardinalidad y probabilidad clásica</h2><p>Cuenta los elementos directamente y comprueba el resultado con las fórmulas.</p></div></div></div>
+              <div class="prob-grid">
+                <div class="prob-panel">
+                  <h3>Cardinalidades de A, B y C</h3>
+                  <div class="prob-tags">
+                    <span class="prob-tag">n(S) = <strong id="prob-card-s">6</strong></span>
+                    <span class="prob-tag">n(A) = <strong id="prob-card-a">3</strong></span>
+                    <span class="prob-tag">n(B) = <strong id="prob-card-b">3</strong></span>
+                    <span class="prob-tag">n(C) = <strong id="prob-card-c">3</strong></span>
+                  </div>
+                  <div id="prob-card-results" style="margin-top:12px"></div>
+                  <div class="prob-notice visible success" id="prob-card-verification" role="status"></div>
+                </div>
+                <div class="prob-panel">
+                  <h3>Probabilidades derivadas</h3>
+                  <div id="probability-results"></div>
+                </div>
+              </div>
+            </section>
+            <aside class="formula-sheet"><h3>Inclusión-exclusión para tres conjuntos</h3><code>n(A∪B∪C) = n(A)+n(B)+n(C)−n(A∩B)−n(A∩C)−n(B∩C)+n(A∩B∩C)</code><p class="formula-note">El resultado de la fórmula debe coincidir con el conteo directo de <code>A ∪ B ∪ C</code>. La misma regla se aplica a las probabilidades dividiendo cada cardinalidad entre <code>n(S)</code>.</p></aside>
+            <div class="page-bottom-note"><span>Cardinalidad calculada desde elementos reales</span><span>Las probabilidades quedan entre 0 y 1.</span></div>
+          </div>
+        </section>
+
+        <section class="notebook-page prob-page" id="page-13" aria-labelledby="prob-expression-title">
+          <div class="page-content-wrapper">
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Capítulo 5</span><span class="page-number-tag">Página 13 de 16</span></div>
+            <section class="section-card">
+              <div class="section-heading"><div class="heading-group"><span class="module-number coral">05</span><div><h2 id="prob-expression-title">Validador y evaluador de expresiones</h2><p>Escribe una expresión con nombres existentes. El sistema analiza símbolos, paréntesis y precedencia sin ejecutar código.</p></div></div></div>
+              <div class="prob-grid">
+                <div class="prob-panel">
+                  <label class="field-label" for="prob-expression-input">Expresión de conjuntos o consulta de probabilidad</label>
+                  <textarea id="prob-expression-input" spellcheck="false" style="min-height:78px" placeholder="Ejemplo: P(A ∪ B)">(A ∪ B) ∩ C</textarea>
+                  <div class="expression-builder" aria-label="Constructor de expresiones matemáticas">
+                    <div class="expression-builder-heading"><strong>Construye tu expresión</strong><span>Selecciona un símbolo para insertarlo donde está el cursor.</span></div>
+                    <div class="expression-builder-label">Conjuntos disponibles</div>
+                    <div class="expression-builder-buttons" id="expression-set-buttons" aria-label="Insertar conjuntos"></div>
+                    <div class="expression-builder-label">Operadores y paréntesis</div>
+                    <div class="expression-builder-buttons" aria-label="Insertar operaciones">
+                      <button type="button" id="expression-probability" title="Consultar la probabilidad de un evento">P(…) <small>Probabilidad</small></button>
+                      <button type="button" data-insert-symbol="∪" title="Unión: elementos de uno o ambos conjuntos">∪ <small>Unión</small></button>
+                      <button type="button" data-insert-symbol="∩" title="Intersección: elementos comunes">∩ <small>Intersección</small></button>
+                      <button type="button" data-insert-symbol="ᶜ" title="Complemento: elementos de S que no pertenecen al conjunto">ᶜ <small>Complemento</small></button>
+                      <button type="button" data-insert-symbol="−" title="Diferencia: elementos del primer conjunto que no están en el segundo">− <small>Diferencia</small></button>
+                      <button type="button" data-insert-symbol="△" title="Diferencia simétrica: elementos exclusivos de cada conjunto">△ <small>Dif. simétrica</small></button>
+                      <button type="button" data-insert-symbol="(" title="Abrir paréntesis">(</button>
+                      <button type="button" data-insert-symbol=")" title="Cerrar paréntesis">)</button>
+                    </div>
+                    <p class="expression-builder-help" id="expression-builder-help" role="status" aria-live="polite">Puedes escribir manualmente o utilizar los botones. Los ejemplos rápidos siguen disponibles.</p>
+                    <div class="expression-builder-actions"><button type="button" id="prob-reset-saved" title="Restaurar los conjuntos iniciales y borrar los datos guardados">Restablecer datos guardados</button>
+                      <button type="button" id="expression-delete-selection">⌫ Borrar</button>
+                      <button type="button" id="expression-clear">Limpiar expresión</button>
+                    </div>
+                  </div>
+                  <div class="data-actions"><button class="button button-primary" id="prob-expression-evaluate" type="button">Evaluar expresión</button></div>
+                  <p class="field-hint">Usa P(evento) para consultar su probabilidad clásica (resultados equiprobables). Puedes combinar conjuntos dentro de los paréntesis.</p>
+                  <div class="prob-actions">
+                    <button type="button" data-expression="P(A)">P(A)</button>
+                    <button type="button" data-expression="P(B)">P(B)</button>
+                    <button type="button" data-expression="P(A ∪ B)">P(A ∪ B)</button>
+                    <button type="button" data-expression="P(A ∩ B)">P(A ∩ B)</button>
+                    <button type="button" data-expression="P(Aᶜ)">P(Aᶜ)</button>
+                    <button type="button" data-expression="(A ∪ B) ∩ C">(A ∪ B) ∩ C</button>
+                    <button type="button" data-expression="(A ∩ B)ᶜ">(A ∩ B)ᶜ</button>
+                    <button type="button" data-expression="(A − B) ∪ C">(A − B) ∪ C</button>
+                    <button type="button" data-expression="(A ∪ B ∪ C)ᶜ">(A ∪ B ∪ C)ᶜ</button>
+                    <button type="button" data-expression="(A △ B) ∩ C">(A △ B) ∩ C</button>
+                    <button type="button" data-expression="(A ∩ B) ∪ (C − A)">(A ∩ B) ∪ (C − A)</button>
+                  </div>
+                  <div class="prob-notice" id="prob-expression-notice" role="status"></div>
+                </div>
+                <div class="prob-panel">
+                  <h3>Resultado validado</h3>
+                  <div class="prob-result"><strong>Expresión original</strong><code id="prob-expression-original">—</code></div>
+                  <div class="prob-result"><strong>Expresión interpretada</strong><code id="prob-expression-interpreted">—</code></div>
+                  <div class="prob-result" style="border-left-color:#4f8f78"><strong>Conjunto resultado</strong><code id="prob-expression-result">—</code></div>
+                  <div class="prob-result" style="border-left-color:#c99a3e"><strong>Cardinalidad</strong><code id="prob-expression-cardinality">—</code></div>
+                  <div class="prob-result" style="display:none"><strong>Probabilidad</strong><code id="prob-expression-probability">—</code></div>
+                  <div class="prob-result" style="display:none"><strong>Desarrollo de probabilidad</strong><code id="prob-expression-probability-work">—</code></div><div class="prob-trace-panel"><h3>Resolución paso a paso</h3><p class="prob-trace-intro">Operaciones intermedias en el orden real de evaluación, respetando paréntesis y precedencia.</p><div id="prob-expression-steps" aria-live="polite"></div></div>
+                </div>
+              </div>
+            </section>
+            <aside class="formula-sheet">
+              <h3>Precedencia documentada</h3>
+              <ol class="prob-steps"><li>Paréntesis: primero se evalúa lo encerrado.</li><li>Complemento pospuesto <code>ᶜ</code>, <code>^c</code> o <code>complemento(...)</code>.</li><li>Intersección <code>∩</code>.</li><li>Diferencia <code>−</code> y diferencia simétrica <code>△</code>, de izquierda a derecha.</li><li>Unión <code>∪</code>, de izquierda a derecha.</li></ol>
+              <p class="formula-note">Errores comprobables: paréntesis sin balancear, operador al inicio o al final, nombre inexistente, expresión incompleta y símbolo prohibido. Ejemplo inválido: <code>A ∪ ∩ B</code>.</p>
+            </aside>
+            <div class="page-bottom-note"><span>Intérprete seguro sin eval()</span><span>Conjuntos disponibles: S, A, B y C.</span></div>
+          </div>
+        </section>
+
+        <section class="notebook-page prob-page" id="page-14" aria-labelledby="prob-venn-title">
+          <div class="page-content-wrapper">
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Visualización</span><span class="page-number-tag">Página 14 de 16</span></div>
+            <section class="section-card">
+              <div class="section-heading"><div class="heading-group"><span class="module-number blue">06</span><div><h2 id="prob-venn-title">Diagramas de Venn interactivos</h2><p>Cada región representa pertenencias reales respecto de S y muestra su cardinalidad.</p></div></div></div>
+              <label class="field-label" for="venn-view">Visualización</label><select id="venn-view"><option value="auto">Automática según la expresión</option><option value="both">Mostrar ambos diagramas</option></select><p class="field-hint" id="venn-view-note"></p>
+              <div class="prob-grid">
+                <div class="prob-panel" id="venn-two-panel">
+                  <h3 id="venn-two-heading">Dos conjuntos</h3><label class="field-label" for="venn-two-mode">Región a destacar</label><select id="venn-two-mode" class="enhance-select"><option value="last">Último resultado evaluado</option><option value="union">A ∪ B</option><option value="intersection">A ∩ B</option><option value="difference">A − B</option><option value="symmetric">A △ B</option><option value="complement">Aᶜ</option></select>
+                  <div class="venn-shell" id="prob-venn-two"></div>
+                  <p class="field-hint">Regiones exclusivas, intersección y exterior respecto de S.</p>
+                </div>
+                <div class="prob-panel" id="venn-three-panel">
+                  <h3>Tres conjuntos</h3><label class="field-label" for="venn-three-mode">Región a destacar</label><select id="venn-three-mode" class="enhance-select"><option value="last">Último resultado evaluado</option><option value="union">A ∪ B ∪ C</option><option value="intersection">A ∩ B ∩ C</option><option value="ab">A ∩ B</option><option value="ac">A ∩ C</option><option value="bc">B ∩ C</option></select>
+                  <div class="venn-shell" id="prob-venn-three"></div>
+                  <p class="field-hint">Se muestran las ocho regiones posibles de pertenencia.</p>
+                </div>
+              </div>
+              <div class="prob-result" style="margin-top:12px"><strong>Resultado expresado</strong><code id="prob-venn-expression-note">Evalúa una expresión para identificar el conjunto resaltado en la visualización.</code></div>
+            </section>
+            <aside class="formula-sheet"><h3>Comprobación visual</h3><div class="prob-example"><ol class="prob-steps"><li>Verifica que cada elemento aparezca una sola vez en la región que le corresponde.</li><li>Suma las cardinalidades de todas las regiones y comprueba que el total sea igual a n(S).</li><li>Modifica los elementos de S, A, B o C y observa cómo se actualizan automáticamente los valores y las cardinalidades de cada región.</li><li>Comprueba que las regiones resaltadas correspondan a la expresión matemática evaluada, incluso cuando estén vacías (∅).</li><li>Verifica que el modo automático muestre el diagrama adecuado según los conjuntos involucrados en la expresión.</li><li>1. Si la expresión corresponde a una consulta de probabilidad, comprueba que el resultado coincida con la cardinalidad de las regiones seleccionadas dividida entre n(S).</li></ol><p class="formula-note">El diagrama admite hasta tres conjuntos. Una expresión con más variables conserva el cálculo textual y muestra una advertencia si se supera este límite.</p></div></aside>
+            <div class="page-bottom-note"><span>SVG · sin biblioteca gráfica adicional</span><span>Cardinalidad basada en elementos reales.</span></div>
+          </div>
+        </section>
+
+        <section class="notebook-page prob-page" id="page-15" aria-labelledby="prob-experiments-title">
+          <div class="page-content-wrapper">
+            <div class="page-header-banner"><span class="unit-label">Unidad II · Experimentos y pruebas</span><span class="page-number-tag">Página 15 de 16</span></div>
+            <section class="section-card">
+              <div class="section-heading"><div class="heading-group"><span class="module-number gold">07</span><div><h2 id="prob-experiments-title">Experimentos interactivos</h2><p>Cambia el espacio muestral, modifica tres eventos y verifica operaciones, cardinalidades y probabilidades.</p></div></div></div>
+              <div class="prob-actions">
+                <button class="active" type="button" data-experiment="dice">1 · Lanzamiento de dado</button>
+                <button type="button" data-experiment="coins">2 · Dos monedas</button>
+                <button type="button" data-experiment="population">3 · Población finita</button>
+              </div>
+              <div class="prob-grid" style="margin-top:12px">
+                <div class="prob-panel">
+                  <h3>Conjuntos del experimento</h3>
+                  <div class="prob-set-row"><label for="exp-s-input">S</label><input id="exp-s-input" type="text"></div>
+                  <div class="prob-set-row"><label for="exp-a-input">A</label><input id="exp-a-input" type="text"></div>
+                  <div class="prob-set-row"><label for="exp-b-input">B</label><input id="exp-b-input" type="text"></div>
+                  <div class="prob-set-row"><label for="exp-c-input">C</label><input id="exp-c-input" type="text"></div>
+                  <div class="prob-actions"><button class="active" id="exp-recalculate" type="button">Recalcular</button></div>
+                  <div class="prob-tags" style="margin-top:10px"><span class="prob-tag">n(S) <strong id="exp-s-count">6</strong></span><span class="prob-tag">n(A) <strong id="exp-a-count">3</strong></span><span class="prob-tag">n(B) <strong id="exp-b-count">3</strong></span><span class="prob-tag">n(C) <strong id="exp-c-count">3</strong></span></div>
+                </div>
+                <div class="prob-panel">
+                  <h3>Operaciones y cardinalidades</h3>
+                  <div id="exp-results"></div>
+                </div>
+              </div>
+              <div class="prob-grid" style="margin-top:14px">
+                <div class="prob-panel"><h3>Probabilidades</h3><div id="exp-probability-tests"></div></div>
+                <div class="prob-panel">
+                  <h3>Batería de expresiones</h3>
+                  <button class="button button-outline" id="exp-run-tests" type="button">Ejecutar pruebas</button>
+                  <div id="exp-expression-tests" style="margin-top:10px"></div>
+                </div>
+              </div>
+            </section>
+            <aside class="formula-sheet"><h3>Casos que deben comprobarse</h3><ul class="formula-list"><li><strong>Duplicados</strong><code>Se eliminan dentro de cada conjunto.</code></li><li><strong>Subconjuntos</strong><code>Los eventos se restringen a S.</code></li><li><strong>Expresión válida</strong><code>(A ∪ B) ∩ C</code></li><li><strong>Expresión inválida</strong><code>A ∪ ∩ B</code></li></ul></aside>
+            <div class="page-bottom-note"><span>Práctica dinámica con tres escenarios</span><span>Todos los resultados dependen de los elementos actuales.</span></div>
+          </div>
+        </section>
+<section class="notebook-page prob-page" id="page-16" aria-labelledby="practice-title"><div class="page-content-wrapper"><div class="page-header-banner"><span class="unit-label">Unidad II · Autoevaluación</span><span class="page-number-tag">Página 16 de 16</span></div><section class="section-card"><div class="section-heading"><div class="heading-group"><span class="module-number blue">08</span><div><h2 id="practice-title">Pon a prueba lo aprendido</h2><p>Ejercicios calculados con tus conjuntos actuales. Escribe la respuesta y recibe retroalimentación.</p></div></div></div><div class="prob-panel"><label for="practice-question" class="field-label">Ejercicio</label><p id="practice-question">Preparando ejercicio…</p><label for="practice-answer" class="field-label">Tu respuesta</label><input id="practice-answer" type="text" placeholder="Ejemplo: 3, 1/2 o {1, 2}" autocomplete="off"><p class="field-hint" id="practice-hint"></p><div class="prob-actions"><button type="button" id="practice-check" class="active">Comprobar respuesta</button><button type="button" id="practice-next">Otro ejercicio</button></div><div id="practice-feedback" class="prob-notice" role="status" aria-live="polite"></div><div class="prob-result"><strong>Progreso de esta sesión</strong><code id="practice-score">0 aciertos de 0 intentos</code></div></div></section><aside class="formula-sheet"><h3>Consejo</h3><p>Para conjuntos, escribe sus elementos entre llaves. El orden no importa. Para probabilidades puedes usar fracciones, decimales o porcentajes. Para cardinalidades, escribe un número entero.</p></aside></div></section>
       </div>
     </div>
 
-    <!-- Navegación entre la cubierta y las ocho páginas temáticas. -->
     <footer class="bottom-control-bar">
       <div class="nav-buttons-cluster">
         <button class="nav-btn" id="btnHome" type="button" title="Ir a la portada">Inicio</button>
@@ -968,7 +1167,6 @@
   <script>
     "use strict";
 
-    // Datos de demostración, paleta de gráficos y estado compartido de la aplicación.
     const SAMPLE_DATA = [118.4, 121.2, 123.7, 125.1, 127.8, 128.5, 129.3, 130.6, 131.1, 132.4, 133.2, 134.8, 135.5, 136.1, 137.9, 138.3, 139.7, 140.2, 141.5, 142.6, 143.1, 144.9, 146.2, 147.4, 149.1, 151.7, 154.3, 158.6, 225.8];
     const CHART_COLORS = ["#163b38", "#d66b4d", "#c99a3e", "#5878a2", "#4f8f78", "#90a96f", "#d08e72", "#7395a9", "#b89757", "#7d9c91", "#a66a5b", "#7e83a1"];
     const DISPLAY_LIMIT = 500;
@@ -987,19 +1185,16 @@
       return numberFormat.format(value);
     };
     const formatPercent = (value) => `${numberFormat.format(value * 100)}%`;
-    // Escapa texto antes de insertarlo como HTML para evitar interpretar contenido importado como marcado.
     const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
       "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
     })[character]);
 
-    // Muestra mensajes de estado al usuario con una clase visual según el tipo.
     function showNotice(message, type = "info") {
       const notice = $("dataNotice");
       notice.textContent = message;
       notice.className = `notice visible ${type}`;
     }
 
-    // Convierte un token numérico finito; devuelve null si no tiene formato admitido.
     function parseNumericToken(token) {
       const normalized = String(token).trim();
       if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(normalized)) return null;
@@ -1007,7 +1202,6 @@
       return Number.isFinite(value) ? value : null;
     }
 
-    // Separa la entrada manual y conserva los tokens inválidos para informar al usuario.
     function parseManualInput() {
       const rawTokens = $("dataInput").value.trim().split(/[\s,;]+/).filter(Boolean);
       const values = [];
@@ -1020,25 +1214,21 @@
       return { values, invalid };
     }
 
-    // Sugiere discreta para enteros y continua para valores con decimales.
     function inferVariableType(values) {
       return values.every((value) => Number.isInteger(value)) ? "discrete" : "continuous";
     }
 
-    // Usa la selección explícita o la sugerencia automática de tipo.
     function selectedVariableType(values) {
       const selected = $("variableType").value;
       return selected === "auto" ? inferVariableType(values) : selected;
     }
 
-    // Limita la longitud visible de las listas sin alterar los datos analizados.
     function renderList(values) {
       const visible = values.slice(0, DISPLAY_LIMIT).map(formatNumber);
       const remaining = values.length - visible.length;
       return `${visible.join(", ")}${remaining > 0 ? ` … (${remaining} valores adicionales)` : ""}`;
     }
 
-    // Calcula cuantiles con posición (N - 1)p e interpolación lineal entre vecinos.
     function quantile(sortedValues, probability) {
       const position = (sortedValues.length - 1) * probability;
       const lowerIndex = Math.floor(position);
@@ -1047,7 +1237,6 @@
       return sortedValues[lowerIndex] + (sortedValues[upperIndex] - sortedValues[lowerIndex]) * fraction;
     }
 
-    // Cuenta valores exactos o agrupa las observaciones en clases según Sturges.
     function buildFrequencyTable(values, grouped) {
       const n = values.length;
       const minimum = values[0];
@@ -1080,9 +1269,6 @@
       return rows;
     }
 
-    // Calcula los resúmenes estadísticos a partir de los datos ordenados.
-    // Los momentos siempre son descriptivos poblacionales; varianza y desviación
-    // cambian de divisor cuando el usuario declara que los datos son una muestra.
     function getAnalysis(values, scope = "population") {
       const sorted = [...values].sort((a, b) => a - b);
       const n = sorted.length;
@@ -1129,10 +1315,9 @@
       }
       const scale = Math.max(1, Math.abs(minimum), Math.abs(maximum));
       const cv = sigma === null || Math.abs(mean) <= 1e-12 * scale ? null : (sigma / Math.abs(mean)) * 100;
-      return { sorted, n, mean, median, modes, maxFrequency, minimum, maximum, range, q1, q3, iqr, variance, sigma, momentVariance, momentSigma, mu3, mu4, skewness, excessKurtosis, lowerFence, upperFence, lowerWhisker, upperWhisker, outliers, cv };
+      return { sorted, n, mean, median, modes, maxFrequency, minimum, maximum, range, q1, q3, iqr, variance, sigma, momentVariance, momentSigma, mu3, mu4, skewness, excessKurtosis, lowerFence, upperFence, outliers, cv };
     }
 
-    // Renderiza frecuencias absolutas, relativas y acumuladas, incluida la fila total.
     function populateFrequencyTable(rows, n) {
       let cumulative = 0;
       const body = rows.map((row) => {
@@ -1145,16 +1330,14 @@
       $("frequencyFoot").innerHTML = `<tr class="table-total"><td>Total</td><td>—</td><td>${n}</td><td>1</td><td>100%</td><td>${n}</td><td>1</td><td>100%</td></tr>`;
     }
 
-    // Actualiza texto simple por id y construye una etiqueta interpretativa segura.
     function setText(id, value) { $(id).textContent = value; }
 
     function setFlag(id, label, kind = "") {
       $(id).innerHTML = `<span class="flag ${kind}">${escapeHtml(label)}</span>`;
     }
 
-    // Clasifica orientativamente forma y curtosis; no sustituye la lectura de gráficos.
     function classifyShape(skewness, excessKurtosis, sigma) {
-      if (sigma === 0) return { skewLabel: "No definida", skewKind: "warn", skewText: "La asimetría no está definida porque todos los valores son iguales.", kurtLabel: "No definida", kurtKind: "warn", kurtText: "La curtosis no está definida cuando la dispersión descriptiva es cero." };
+      if (sigma === 0) return { skewLabel: "No definida", skewKind: "warn", skewText: "La asimetría no está definida porque todos los valores son iguales.", kurtLabel: "No definida", kurtKind: "warn", kurtText: "La curtosis no es por sí sola un conteo de valores atípicos." };
       const absoluteSkew = Math.abs(skewness);
       let skewLabel;
       let skewText;
@@ -1189,65 +1372,11 @@
       return { skewLabel, skewKind, skewText, kurtLabel, kurtKind, kurtText };
     }
 
-    // Libera instancias anteriores antes de redibujar para evitar duplicados.
     function destroyCharts() {
       for (const chart of Object.values(chartInstances)) chart.destroy();
       chartInstances = {};
     }
 
-    function renderMomentShapeChart(analysis) {
-      const chart = $("kurtosisChart");
-      if (!analysis) {
-        chart.innerHTML = '<text class="kurtosis-empty" x="300" y="145" text-anchor="middle">Carga datos para visualizar su distribución.</text>';
-        chart.setAttribute("aria-label", "Gráfica vacía; carga datos para visualizar asimetría y curtosis");
-        return;
-      }
-
-      const { sorted, n, mean, momentSigma, skewness, excessKurtosis } = analysis;
-      const skewLabel = skewness === null ? "no definida" : formatNumber(skewness);
-      const kurtosisLabel = excessKurtosis === null ? "no definida" : formatNumber(excessKurtosis);
-      const summary = `n = ${n} · γ₁ = ${skewLabel} · γ₂ = ${kurtosisLabel}`;
-      if (momentSigma === 0) {
-        chart.innerHTML = `<text class="kurtosis-summary" x="58" y="24">${summary}</text><text class="kurtosis-empty" x="300" y="145" text-anchor="middle">La forma no se define si todos los valores son iguales.</text>`;
-        chart.setAttribute("aria-label", `${summary}. Asimetría y curtosis no definidas porque todos los valores son iguales`);
-        return;
-      }
-
-      const standardized = sorted.map((value) => (value - mean) / momentSigma);
-      const bandwidth = 1.06 * Math.pow(n, -0.2);
-      const xMinimum = Math.min(-4, Math.min(...standardized) - 2 * bandwidth);
-      const xMaximum = Math.max(4, Math.max(...standardized) + 2 * bandwidth);
-      const plot = { left: 58, right: 570, top: 40, bottom: 222 };
-      const plotWidth = plot.right - plot.left;
-      const plotHeight = plot.bottom - plot.top;
-      const pointCount = 121;
-      const densityAt = (x) => standardized.reduce((sum, value) => {
-        const distance = (x - value) / bandwidth;
-        return sum + Math.exp(-0.5 * distance * distance);
-      }, 0) / (n * bandwidth * Math.sqrt(2 * Math.PI));
-      const normalAt = (x) => Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
-      const points = Array.from({ length: pointCount }, (_, index) => {
-        const x = xMinimum + (index / (pointCount - 1)) * (xMaximum - xMinimum);
-        return { x, observed: densityAt(x), reference: normalAt(x) };
-      });
-      const maxDensity = Math.max(...points.map((point) => Math.max(point.observed, point.reference))) * 1.12;
-      const xFor = (value) => plot.left + ((value - xMinimum) / (xMaximum - xMinimum)) * plotWidth;
-      const yFor = (value) => plot.bottom - (value / maxDensity) * plotHeight;
-      const curvePath = (key) => points.map((point, index) => `${index === 0 ? "M" : "L"}${xFor(point.x).toFixed(2)} ${yFor(point[key]).toFixed(2)}`).join(" ");
-      const densityTicks = [0, maxDensity / 2, maxDensity];
-      const grid = densityTicks.map((tick) => {
-        const y = yFor(tick);
-        const label = formatNumber(Number(tick.toPrecision(2)));
-        return `<line class="kurtosis-grid" x1="${plot.left}" y1="${y}" x2="${plot.right}" y2="${y}" /><text class="kurtosis-axis-labels" x="${plot.left - 9}" y="${y + 4}" text-anchor="end">${label}</text>`;
-      }).join("");
-      const xTickValues = [xMinimum, ...[-3, -2, -1, 0, 1, 2, 3].filter((value) => value > xMinimum && value < xMaximum), xMaximum];
-      const xTicks = xTickValues.map((value) => `<text class="kurtosis-axis-labels" x="${xFor(value)}" y="${plot.bottom + 19}" text-anchor="middle">${formatNumber(value)}</text>`).join("");
-      const meanLine = `<line class="kurtosis-mean" x1="${xFor(0)}" y1="${plot.top}" x2="${xFor(0)}" y2="${plot.bottom}" />`;
-      chart.innerHTML = `<text class="kurtosis-summary" x="${plot.left}" y="20">${summary}</text><g>${grid}</g>${meanLine}<path class="kurtosis-curve reference" d="${curvePath("reference")}" /><path class="kurtosis-curve observed" d="${curvePath("observed")}" /><path d="M${plot.left} ${plot.bottom}H${plot.right}" fill="none" stroke="#687a73" /><g>${xTicks}</g><text class="kurtosis-axis-labels" x="${(plot.left + plot.right) / 2}" y="${plot.bottom + 43}" text-anchor="middle">Valores estandarizados (z)</text><text class="kurtosis-axis-labels" transform="translate(15 ${(plot.top + plot.bottom) / 2}) rotate(-90)" text-anchor="middle">Densidad</text>`;
-      chart.setAttribute("aria-label", `Densidad estimada de ${n} datos comparada con la normal; asimetría ${skewLabel}, exceso de curtosis ${kurtosisLabel}`);
-    }
-
-    // Dibuja frecuencias, caja y bigotes, y proporciones con Chart.js.
     function renderCharts(rows, grouped, analysis) {
       if (typeof Chart === "undefined") {
         $("chartNotice").textContent = "Chart.js no pudo cargarse. Comprueba la conexión e inténtalo de nuevo.";
@@ -1340,7 +1469,6 @@
       });
     }
 
-          // Sincroniza símbolos, textos y fórmula de varianza con población o muestra.
           function updateScopeDisplay() {
             const isSample = $("dataScope").value === "sample";
             const countSymbol = isSample ? "n" : "N";
@@ -1361,7 +1489,6 @@
             setText("sigmaResultLabel", `Desviación estándar ${isSample ? "muestral" : "poblacional"} · ${sdSymbol}`);
           }
 
-          // Coordina los cálculos y actualiza todas las páginas con el análisis actual.
           function renderAnalysis(sourceMessage = "") {
       if (!population.length) return;
       updateScopeDisplay();
@@ -1438,10 +1565,6 @@
       setText("kurtosisValue", excessKurtosis === null ? "No definida" : formatNumber(excessKurtosis));
       setFlag("kurtosisFlag", shape.kurtLabel, shape.kurtKind);
       setText("kurtosisInterpretation", shape.kurtText);
-      renderMomentShapeChart(analysis);
-      setText("kurtosisChartNote", momentSigma === 0
-        ? "Como todos los valores son iguales, la dispersión es cero y no se definen la asimetría ni la curtosis."
-        : "El desplazamiento de la curva sólida muestra la asimetría; sus colas, comparadas con la normal discontinua, ayudan a interpretar la curtosis. γ₁ y γ₂ se calculan con los valores originales.");
       setText("frequencyChartNote", grouped ? "Intervalos calculados con Sturges; barras contiguas representan clases cuantitativas." : "Valores observados distintos; barras separadas representan frecuencias discretas.");
       setText("footerSummary", `${countSymbol} = ${n} · Varianza: divisor ${isSample ? "n − 1" : "N"} · Momentos descriptivos: divisor ${countSymbol}`);
       lastChartState = { rows, grouped, analysis };
@@ -1449,7 +1572,6 @@
       if (sourceMessage) showNotice(sourceMessage, "success");
     }
 
-    // Valida el conjunto antes de guardarlo como estado y recalcular los resultados.
     function loadValues(values, source, invalidCount = 0) {
       if (!values.length) {
         showNotice("No hay observaciones numéricas válidas. Revisa el contenido y vuelve a intentarlo.", "error");
@@ -1479,7 +1601,6 @@
       return true;
     }
 
-    // Procesa el área de texto y avisa si hubo entradas que no eran numéricas.
     function analyzeManualInput() {
       const { values, invalid } = parseManualInput();
       if (!values.length) {
@@ -1493,7 +1614,6 @@
       }
     }
 
-    // Divide una fila CSV respetando separadores dentro de celdas entre comillas.
     function splitDelimitedLine(line, delimiter) {
       const cells = [];
       let cell = "";
@@ -1514,7 +1634,6 @@
       return cells;
     }
 
-    // Detecta separador, encabezados y formato decimal para preparar CSV o TXT.
     function parseFileText(text) {
       const cleanText = text.replace(/^\uFEFF/, "");
       const lines = cleanText.split(/\r?\n/).filter((line) => line.trim().length > 0);
@@ -1536,7 +1655,6 @@
       return { headers, rows: dataRows, delimiter, decimalComma };
     }
 
-    // Interpreta una celda importada y distingue vacíos de valores inválidos.
     function parseImportedNumber(cell, decimalComma) {
       const value = String(cell).trim();
       if (!value) return { blank: true, value: null };
@@ -1544,7 +1662,6 @@
       return { blank: false, value: parseNumericToken(normalized) };
     }
 
-    // Lee el archivo local y permite elegir qué columna numérica analizar.
     async function prepareFile() {
       const file = $("fileInput").files[0];
       if (!file) {
@@ -1584,7 +1701,6 @@
       }
     }
 
-    // Convierte la columna seleccionada y delega validación/cálculo a loadValues.
     function importSelectedColumn() {
       if (!importedTable) {
         showNotice("Selecciona un archivo antes de cargar una columna.", "warning");
@@ -1602,14 +1718,12 @@
       loadValues(values, `Archivo ${importedFileName} · ${importedTable.headers[columnIndex]}`, invalid);
     }
 
-    // Conecta controles de entrada, ejemplo, limpieza e importación con sus acciones.
     $("analyzeButton").addEventListener("click", analyzeManualInput);
     $("sampleButton").addEventListener("click", () => {
       $("variableType").value = "auto";
       $("groupingMode").value = "auto";
       loadValues([...SAMPLE_DATA], "Datos de ejemplo · tiempos de respuesta (ms)");
     });
-    // Limpia datos, resultados, indicadores y gráficos para iniciar otro análisis.
     $("clearButton").addEventListener("click", () => {
       population = [];
       currentSource = "";
@@ -1630,8 +1744,6 @@
       setText("dispersionInterpretation", "El CV compara la desviación con la magnitud de la media; no es útil si la media es cercana a cero.");
       setText("skewInterpretation", "El signo de γ₁ orienta sobre la cola más influyente; contrástalo con el histograma.");
       setText("kurtosisInterpretation", "La curtosis no es por sí sola un conteo de valores atípicos.");
-      renderMomentShapeChart(null);
-      setText("kurtosisChartNote", "El desplazamiento de la curva sólida muestra la asimetría; sus colas, comparadas con la normal discontinua, ayudan a interpretar la curtosis. γ₁ y γ₂ se calculan con los valores originales.");
       destroyCharts();
       showNotice("Datos limpiados. Ingresa una muestra o población, o carga el conjunto de ejemplo.", "info");
       setText("footerSummary", "Los datos permanecen en este navegador y no se envían a un servidor.");
@@ -1646,7 +1758,6 @@
     });
     updateScopeDisplay();
 
-    // Estado y nombres de las páginas usados por el sistema de navegación.
     const notebookStage = $("notebookStage");
     const coverPage = $("page-cover");
     const contentPages = [...document.querySelectorAll(".notebook-page:not(.page-cover)")];
@@ -1658,21 +1769,28 @@
       "Medidas de dispersión",
       "Detección de atípicos",
       "Momentos estadísticos",
-      "Representación gráfica"
+      "Representación gráfica",
+      "Unidad II · Introducción",
+      "Unidad II · Fundamentos",
+      "Unidad II · Operaciones",
+      "Unidad II · Cardinalidad",
+      "Unidad II · Validador",
+      "Unidad II · Diagramas de Venn",
+      "Unidad II · Experimentos"
     ];
     let currentPage = 0;
 
-    // En pantallas grandes el cuaderno presenta las páginas como un pliego doble.
     function isTwoPageMode() {
       return window.innerWidth >= 1024;
     }
 
-    // Reconstruye las opciones del selector según el modo de una o dos páginas.
     function updatePageSelector() {
       const selector = $("pageSelector");
       const twoPageMode = isTwoPageMode();
       selector.innerHTML = '<option value="0">Cubierta</option>';
-      const pageNumbers = twoPageMode ? [1, 3, 5, 7] : contentPages.map((_, index) => index + 1);
+      const pageNumbers = twoPageMode
+        ? Array.from({ length: Math.ceil(contentPages.length / 2) }, (_, index) => index * 2 + 1)
+        : contentPages.map((_, index) => index + 1);
       pageNumbers.forEach((pageNumber) => {
         const option = document.createElement("option");
         option.value = String(pageNumber);
@@ -1683,7 +1801,6 @@
       });
     }
 
-    // Sincroniza botones, selector y contador con la página actualmente visible.
     function updatePageControls() {
       const twoPageMode = isTwoPageMode();
       const selectorPage = currentPage === 0 ? 0 : twoPageMode ? Math.ceil(currentPage / 2) * 2 - 1 : currentPage;
@@ -1706,7 +1823,6 @@
       }
     }
 
-    // Activa la cubierta o páginas correspondientes y crea los gráficos al mostrarlos.
     function renderCurrentPage(animate = true) {
       const twoPageMode = isTwoPageMode();
       const pages = [coverPage, ...contentPages];
@@ -1753,19 +1869,16 @@
       window.requestAnimationFrame(() => Object.values(chartInstances).forEach((chart) => chart.resize()));
     }
 
-    // Mantiene la página solicitada dentro del rango válido del cuaderno.
     function navigateTo(pageNumber) {
       currentPage = Math.max(0, Math.min(contentPages.length, pageNumber));
       renderCurrentPage();
     }
 
-    // Avanza una página en móvil o un pliego en escritorio.
     function navigateNext() {
       if (currentPage === 0) navigateTo(1);
       else navigateTo(currentPage + (isTwoPageMode() ? 2 : 1));
     }
 
-    // Retrocede respetando la cubierta y el modo de doble página.
     function navigatePrevious() {
       if (currentPage === 0) return;
       if (isTwoPageMode()) {
@@ -1776,7 +1889,6 @@
       }
     }
 
-    // Conecta navegación, pantalla completa, redimensionado y atajos de teclado.
     $("btnHome").addEventListener("click", () => navigateTo(0));
     $("btnPrev").addEventListener("click", navigatePrevious);
     $("btnNext").addEventListener("click", navigateNext);
@@ -1798,10 +1910,15 @@
       if (event.key === "End") navigateTo(isTwoPageMode() ? contentPages.length - 1 : contentPages.length);
     });
 
-    // Prepara la vista inicial y carga el conjunto de demostración al abrir la app.
     updatePageSelector();
     renderCurrentPage(false);
     loadValues([...SAMPLE_DATA], "Datos de ejemplo · tiempos de respuesta (ms)");
   </script>
+  <script src="probabilidad.js"></script>
+  <script src="expresiones.js"></script>
+  <script src="editor-expresiones.js"></script>
+  <script src="venn.js"></script>
+  <script src="experimentos.js"></script>
+  <script src="mejoras-integradas.js"></script>
 </body>
 </html>

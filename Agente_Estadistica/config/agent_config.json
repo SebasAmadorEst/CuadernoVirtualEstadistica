@@ -1,9 +1,10 @@
 {
-  "agent_name": "Agente de Estadística Descriptiva UTP",
+  "agent_name": "Agente de Estadística y Probabilidad UTP",
   "language": "es",
-  "domain": "Estadística Descriptiva y Análisis de Datos",
+  "domain": "Estadística Descriptiva, Teoría de Conjuntos y Probabilidad",
   "program": "Ingeniería en Sistemas y Computación",
-  "institution_context": "Universidad Tecnológica de Panamá (UTP)",
+  "institution_context": "Universidad Tecnológica de Pereira (UTP), Colombia",
+  "academic_period": "2026-2",
   "model": "configurable-by-deployment",
   "temperature": 0.2,
   "top_p": 0.9,
@@ -11,6 +12,7 @@
   "system_prompt_path": "config/system_prompt.md",
   "knowledge_files": [
     "conocimientos/teoria/Estadistica_Descriptiva_y_Momentos.md",
+    "conocimientos/teoria/Teoria_de_Conjuntos_y_Probabilidad.md",
     "conocimientos/software/requerimientos_proyecto_software.md",
     "prompts_ejemplo/casos_de_uso.md"
   ],

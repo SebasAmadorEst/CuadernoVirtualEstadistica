@@ -1,142 +1,158 @@
-# Cuaderno Virtual de Estadística
+# 📊 Cuaderno Virtual de Estadística
 
-Aplicación educativa para explorar estadística descriptiva mediante datos numéricos, tablas, medidas resumen y gráficos. Está pensada para estudiantes que empiezan a estudiar análisis de datos y para docentes que quieran mostrar cómo cambian los resultados al variar las observaciones.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![UTP](https://img.shields.io/badge/UTP-2026--2-174A7E)
 
-## Empezar
+Cuaderno virtual interactivo de **Estadística Descriptiva, Teoría de Conjuntos y Probabilidad**, desarrollado como proyecto académico del programa de Ingeniería de Sistemas y Computación de la Universidad Tecnológica de Pereira (UTP), período 2026-2.
 
-1. Abre `index.html` con un navegador actualizado, por ejemplo Firefox, Chrome o Edge. No hace falta instalar paquetes ni compilar el proyecto.
-2. Al abrirse, el cuaderno carga un conjunto de demostración de tiempos de respuesta en milisegundos. Sus resultados son solo un ejemplo; no representan datos de una investigación real.
-3. Usa **Abrir**, **Siguiente**, **Anterior**, **Inicio** o el selector de páginas para recorrer el contenido. En una pantalla grande se muestran dos páginas a la vez; en una pantalla pequeña se muestra una.
-4. En la página 1 puedes escribir observaciones o importar un archivo y pulsar **Analizar datos**. Los resultados se actualizan en todas las páginas.
+Su propósito es facilitar el aprendizaje mediante explicaciones teóricas, fórmulas, ejemplos resueltos, herramientas de cálculo, representaciones gráficas y actividades interactivas. El estudiante puede modificar los datos y observar cómo cambian los resultados, relacionando los conceptos matemáticos con su aplicación práctica.
 
-La hoja de cálculo y los cálculos funcionan en el navegador. Las gráficas necesitan que Chart.js pueda cargarse desde jsDelivr; las tipografías personalizadas también se descargan de Google Fonts. Si no hay conexión, puede que las gráficas o esas fuentes no estén disponibles.
+## 📚 Contenido del cuaderno
 
-## Recorrido del cuaderno
+El cuaderno está organizado en dos unidades y 16 páginas de contenido académico.
 
-| Página | Tema | Qué presenta |
+### Unidad I — Estadística descriptiva
+
+| Página | Tema | Contenido |
 | --- | --- | --- |
-| Cubierta | Portada | Identificación visual del cuaderno. |
-| 1 | Gestión e identificación | Ingreso manual o CSV/TXT, tipo de conjunto, tipo de variable y resumen inicial. |
-| 2 | Organización | Orden ascendente y descendente, tabla de frecuencias y agrupación opcional por intervalos. |
+| 1 | Gestión e identificación de datos | Ingreso de observaciones e identificación de población o muestra. |
+| 2 | Organización de datos | Ordenamiento y distribución de frecuencias. |
 | 3 | Tendencia central | Media, mediana y moda. |
-| 4 | Posición | Cuartiles Q₁, Q₂ y Q₃, y rango intercuartílico. |
-| 5 | Dispersión | Mínimo, máximo, rango, varianza, desviación estándar y coeficiente de variación. |
-| 6 | Posibles atípicos | Límites de Tukey y observaciones fuera de esos límites. No se borran datos automáticamente. |
-| 7 | Momentos | Momentos centrales, asimetría y exceso de curtosis. |
-| 8 | Gráficos | Frecuencias, caja y bigotes, y proporciones. |
+| 4 | Medidas de posición | Cuartiles e interpolación lineal. |
+| 5 | Medidas de dispersión | Variabilidad absoluta y relativa. |
+| 6 | Detección de valores atípicos | Rango intercuartílico y regla de Tukey. |
+| 7 | Momentos estadísticos | Momentos centrales, asimetría y curtosis. |
+| 8 | Representación gráfica | Gráficos de frecuencias, proporciones y caja y bigotes. |
 
-## Ingresar datos
+### Unidad II — Teoría de conjuntos y probabilidad
 
-### Escribir observaciones
+| Página | Tema | Contenido |
+| --- | --- | --- |
+| 9 | Introducción a la unidad | Experimentos, espacio muestral, eventos y probabilidad clásica. |
+| 10 | Fundamentos de teoría de conjuntos | Administración de S, A, B y C; pertenencia y subconjuntos. |
+| 11 | Operaciones entre conjuntos | Unión, intersección, complemento, diferencia y diferencia simétrica. |
+| 12 | Cardinalidad y probabilidad clásica | Conteo de elementos y principio de inclusión-exclusión. |
+| 13 | Validador y evaluador de expresiones | Construcción de expresiones, validación, resolución paso a paso y consultas de probabilidad. |
+| 14 | Diagramas de Venn interactivos | Visualización dinámica de regiones, elementos y cardinalidades. |
+| 15 | Experimentos interactivos | Dados, dos monedas y población finita editable. |
+| 16 | Autoevaluación | Preguntas interactivas con retroalimentación. |
 
-En la página 1 se aceptan números separados por comas, espacios, punto y coma o saltos de línea. Usa punto para separar decimales. Por ejemplo:
+## ✨ Funcionalidades destacadas
 
-```text
-12.4, 15.8, 16.1
-18.2 20.5
+- Cálculos estadísticos a partir de datos ingresados por el usuario.
+- Tablas de frecuencias y representaciones gráficas.
+- Fórmulas y explicaciones que acompañan los resultados.
+- Conjuntos editables y eliminación de elementos duplicados.
+- Evaluador de expresiones con validación sintáctica, sin utilizar `eval()`.
+- Resultados numéricos de conjuntos ordenados de menor a mayor.
+- Consultas explícitas de probabilidad en formato fraccionario, decimal y porcentual.
+- Diagramas de Venn sincronizados con las expresiones evaluadas.
+- Selección automática del diagrama de dos o tres conjuntos según la expresión, con opción de exploración manual.
+- Resaltado de regiones incluso cuando están vacías, mostrando sus elementos y cardinalidades.
+- Experimentos y actividades de autoevaluación.
+- Persistencia local de datos en el navegador.
+
+## 🧮 Evaluador de expresiones
+
+En la página 13 se pueden construir expresiones utilizando los conjuntos definidos previamente. El sistema valida la sintaxis, muestra el resultado y desarrolla las operaciones paso a paso.
+
+| Expresión | Significado |
+| --- | --- |
+| `A ∪ B` o `AuB` | Unión |
+| `A ∩ B` | Intersección |
+| `A − B` | Diferencia |
+| `A △ B` | Diferencia simétrica |
+| `Aᶜ` o `A^c` | Complemento respecto a S |
+| `(A ∪ B) ∩ C` | Expresión compuesta |
+| `P(A)` | Probabilidad de A |
+| `P(A ∪ B)` | Probabilidad de la unión |
+| `P(A ∩ B ∩ C)` | Probabilidad de la intersección triple |
+
+La precedencia de operadores es: paréntesis, complemento, intersección, diferencia y diferencia simétrica, y finalmente unión.
+
+**Ejemplo:** si S = {1, 2, 3, 4, 5, 6}, A = {2, 4, 6} y B = {4, 5, 6}, entonces `A ∪ B` devuelve {2, 4, 5, 6}. La consulta `P(A ∪ B)` devuelve 4/6 = 2/3 ≈ 66,67 % bajo el supuesto de resultados equiprobables.
+
+## 🎨 Diagramas de Venn
+
+La página 14 representa gráficamente las expresiones de la página 13. Los colores distinguen las regiones seleccionadas (verde), las no seleccionadas (gris) y las selecciones parciales (ámbar, cuando corresponda en la exploración manual).
+
+El modo automático utiliza los conjuntos involucrados en la expresión para elegir la representación adecuada. Las regiones vacías también pueden resaltarse: su selección depende de la expresión matemática y no de su cardinalidad.
+
+## 🚀 Cómo ejecutar el proyecto
+
+No se requiere instalar dependencias de JavaScript ni compilar el código.
+
+1. Descarga el repositorio mediante **Code → Download ZIP** en GitHub.
+2. Descomprime el archivo.
+3. Localiza la carpeta que contiene `index.html` y ábrelo en un navegador moderno.
+
+### Alternativa: servidor local
+
+Desde una terminal ubicada en la carpeta que contiene `index.html`, ejecuta:
+
+```bash
+python3 -m http.server 4173
 ```
 
-Los valores que no se puedan interpretar como números se informan y no se incluyen en el análisis. Revisa el aviso para confirmar que no se haya omitido un dato por error.
+Abre [http://localhost:4173](http://localhost:4173) en el navegador. Para detener el servidor, presiona `Ctrl+C`.
 
-### Importar un archivo
+> Se recomienda conexión a Internet para cargar Chart.js y las tipografías externas. Los cálculos y módulos de probabilidad se ejecutan en el navegador.
 
-Se admiten archivos CSV y TXT. Si hay varias columnas, elige la que quieres analizar. La aplicación intenta reconocer el separador y los encabezados, y puede sugerir la columna con más valores numéricos.
+## 📁 Estructura del proyecto
 
-- Se admiten separadores coma, punto y coma, tabulación o espacios.
-- En archivos separados por punto y coma se interpreta la coma como separador decimal. Comprueba que el formato del archivo coincide con esta convención.
-- Las celdas vacías se omiten; las celdas no numéricas se cuentan como inválidas y se notifican.
-- El archivo se lee en el navegador; no se carga a un servidor de esta aplicación.
-
-### Opciones
-
-- **Población completa / muestra:** define la fórmula de varianza y desviación estándar. La opción inicial es población.
-- **Tipo de variable:** puede inferirse a partir de los valores o elegirse como discreta o continua. La inferencia automática solo mira si los valores son enteros; confirma el tipo según el significado de la variable.
-- **Tabla de frecuencias:** puede agruparse con Sturges, mantenerse sin agrupar o dejarse en modo automático. En automático, la tabla se agrupa cuando hay más de 14 valores distintos.
-- El límite es de 50 000 observaciones por análisis.
-
-## Fórmulas y convenciones
-
-La aplicación analiza variables **cuantitativas**. Para población usa `N`, media poblacional `μ` y varianza poblacional. Para muestra usa `n`, media muestral `x̄` y varianza muestral con divisor `n − 1`.
-
-### Frecuencias
-
-- Número inicial de clases: $k = 1 + 3.322\log_{10}(N)$, redondeado a un entero.
-- Rango: $R = x_{max} - x_{min}$; amplitud aproximada: $a = R/k$.
-- Marca de clase: $X_i = (L_i + U_i)/2$.
-- Frecuencia relativa: $h_i = f_i/N$; $F_i$ y $H_i$ son las frecuencias acumuladas.
-- Las clases agrupadas se usan para resumir frecuencias. Las medidas estadísticas se calculan a partir de los valores individuales originales, no de las marcas de clase.
-
-### Centro y posición
-
-- Media poblacional: $\mu = \sum x_i/N$.
-- Mediana: valor central de los datos ordenados; si hay un número par de observaciones, promedio de los dos valores centrales.
-- Moda: valor o valores con frecuencia máxima. Si cada valor aparece una sola vez, se informa que no hay moda.
-- Cuartiles: posición $r = 1 + (N - 1)p$ para $p=0.25, 0.50, 0.75$, con interpolación lineal cuando la posición no es entera. $Q_2$ es la mediana y $RIC = Q_3 - Q_1$.
-
-### Dispersión y forma
-
-- Rango: $R = x_{max} - x_{min}$.
-- Varianza de población: $\sigma^2 = \sum(x_i-\mu)^2/N$; desviación: $\sigma = \sqrt{\sigma^2}$.
-- Varianza muestral: $s^2 = \sum(x_i-\bar{x})^2/(n-1)$; desviación: $s = \sqrt{s^2}$.
-- Coeficiente de variación: $CV = (\sigma/|\mu|)\times100\%$ (o usa `s` y `x̄` en modo muestra). No se informa si la media es cero o demasiado cercana a cero.
-- Regla de Tukey: límites $Q_1 - 1.5RIC$ y $Q_3 + 1.5RIC$. Un valor fuera de ellos es un **posible** atípico, no un error confirmado.
-- Momento central de orden $j$: $m_j = \sum(x_i-\mu)^j/N$. El primero es cero teóricamente; el segundo es la varianza descriptiva. La aplicación muestra los momentos de forma con divisor poblacional, incluso si se seleccionó muestra.
-- Asimetría: $\gamma_1 = m_3/m_2^{3/2}$. El signo orienta sobre la cola con mayor influencia, pero no prueba simetría por sí solo.
-- Exceso de curtosis: $\gamma_2 = m_4/m_2^2 - 3$. Para la distribución normal el exceso es cero. No equivale a contar atípicos.
-
-Los umbrales de $0.5$ que aparecen para interpretar asimetría y curtosis son guías descriptivas, no reglas universales. Cuando la dispersión es cero, asimetría y curtosis quedan sin definir.
-
-## Gráficos
-
-- **Frecuencias:** barras para valores discretos o intervalos agrupados. En intervalos, las barras se dibujan contiguas.
-- **Caja y bigotes:** la caja abarca Q₁ a Q₃; la línea señala la mediana. Los bigotes llegan al valor más extremo dentro de los límites de Tukey y los puntos exteriores se marcan como posibles atípicos.
-- **Proporciones:** cada sector representa la fracción de observaciones de un valor o intervalo.
-
-Los gráficos ayudan a describir patrones; no demuestran causalidad. Interpreta los resultados según las unidades, la población o muestra y el contexto de los datos.
-
-## Privacidad y estado de los datos
-
-Los cálculos y la lectura de archivos se realizan localmente en el navegador; esta aplicación no tiene servidor y no envía las observaciones a un servicio. Las observaciones viven en la memoria de la página: **Limpiar** las elimina y recargar la página vuelve a cargar el conjunto de ejemplo. La descarga externa de Chart.js y Google Fonts sí requiere conexión, pero no incluye los datos analizados.
-
-## Archivos del proyecto
+Estructura principal, relativa a la carpeta que contiene `index.html`:
 
 ```text
 Estadistica/
-├── index.html                         Aplicación: HTML, CSS y JavaScript en un solo archivo
+├── index.html
+├── probabilidad.css
+├── probabilidad.js
+├── expresiones.js
+├── editor-expresiones.js
+├── venn.js
+├── experimentos.js
+├── mejoras-integradas.js
 ├── imagenes/
-│   ├── portada.png                    Imagen de cubierta
-│   └── hojas_cuaderno.png              Fondo de las páginas interiores
-└── Agente_Estadistica/
-    ├── config/                         Prompt y configuración conceptual del agente
-    ├── conocimientos/                  Teoría y requerimientos estadísticos/software
-    ├── prompts_ejemplo/                Casos para probar respuestas educativas
-    └── README.md                       Documentación específica del material del agente
+├── Agente_Estadistica/
+│   ├── config/
+│   ├── conocimientos/
+│   ├── prompts_ejemplo/
+│   └── README.md
+└── README.md
 ```
 
-La carpeta `Agente_Estadistica` contiene material de referencia para un tutor educativo. No es necesaria para ejecutar el cuaderno web.
+| Archivo | Responsabilidad |
+| --- | --- |
+| `index.html` | Interfaz, navegación y contenido académico. |
+| `probabilidad.css` | Estilos de la Unidad II. |
+| `probabilidad.js` | Gestión de conjuntos, operaciones y cardinalidades. |
+| `expresiones.js` | Análisis y evaluación de expresiones. |
+| `editor-expresiones.js` | Constructor interactivo de expresiones. |
+| `venn.js` | Representación dinámica mediante SVG. |
+| `experimentos.js` | Experimentos y comprobaciones. |
+| `mejoras-integradas.js` | Funcionalidades complementarias y persistencia. |
 
-## Mapa del código
+## 🤖 Agente educativo
 
-El código de la aplicación está concentrado en `index.html`:
+La carpeta `Agente_Estadistica/` contiene documentación teórica, instrucciones, una plantilla de configuración y ejemplos de uso para integrar un agente educativo de inteligencia artificial. Es un recurso complementario; no requiere que se configure una API para utilizar el cuaderno web.
 
-- `<head>`: metadatos y dependencias remotas.
-- `<style>`: variables de color, estilos de controles y páginas, y reglas adaptables a escritorio y móvil.
-- `<main>`: cubierta, ocho páginas con sus fórmulas y controles de navegación.
-- Primer bloque del `<script>`: conjunto de ejemplo, estado y formato de números.
-- Funciones de entrada y cálculo: validación numérica, cuantiles, frecuencias, momentos y otras medidas.
-- Funciones de presentación: actualización de resultados, avisos, tablas y gráficas.
-- Funciones de importación: lectura de CSV/TXT, separación de columnas y conversión de celdas.
-- Funciones de navegación: paginación, modo doble en escritorio, pantalla completa y atajos.
+## 🛠️ Tecnologías utilizadas
 
-El mismo archivo incluye comentarios de orientación antes de los principales componentes y funciones. Al cambiar una fórmula, revisa tanto su cálculo como la explicación visible en la página y este README.
+- **HTML5:** estructura y contenido.
+- **CSS3:** presentación y diseño de la interfaz.
+- **JavaScript:** cálculos, validaciones e interactividad.
+- **Chart.js:** representación de datos estadísticos.
+- **SVG:** diagramas de Venn dinámicos.
+- **LocalStorage:** almacenamiento local de información.
 
-## Atajos de teclado
+## 🎓 Contexto académico
 
-Cuando el foco no está en un campo o botón, se puede avanzar con **→** o **Page Down**, retroceder con **←** o **Page Up**, ir a la cubierta con **Home** y a la última página con **End**.
+**Universidad:** Universidad Tecnológica de Pereira (UTP)  
+**Programa:** Ingeniería de Sistemas y Computación  
+**Área:** Estadística  
+**Período:** 2026-2
 
-## Material de referencia
+Este proyecto tiene fines educativos y busca complementar el estudio de la estadística y la probabilidad mediante la experimentación y la visualización matemática. Los resultados deben interpretarse de acuerdo con los supuestos y convenciones de cada tema.
 
-- [Teoría de estadística descriptiva y momentos](Agente_Estadistica/conocimientos/teoria/Estadistica_Descriptiva_y_Momentos.md)
-- [Requerimientos de los módulos del software](Agente_Estadistica/conocimientos/software/requerimientos_proyecto_software.md)
-- [Prompt del tutor educativo](Agente_Estadistica/config/system_prompt.md)
-- [Casos de uso de ejemplo](Agente_Estadistica/prompts_ejemplo/casos_de_uso.md)
+---
+
+*Aprender estadística no es solamente aplicar fórmulas, sino comprender qué representan los datos y cómo interpretar sus resultados.*

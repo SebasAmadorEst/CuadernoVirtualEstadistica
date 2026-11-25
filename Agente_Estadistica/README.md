@@ -1,6 +1,6 @@
 # Agente_Estadistica
 
-Carpeta de conocimiento y configuración para un agente educativo de **Estadística Descriptiva y Análisis de Datos**, dirigido al programa de Ingeniería en Sistemas y Computación de la Universidad Tecnológica de Panamá (UTP).
+Carpeta de conocimiento y configuración para un agente educativo de **Estadística Descriptiva, Teoría de Conjuntos y Probabilidad**, dirigido al programa de Ingeniería en Sistemas y Computación de la Universidad Tecnológica de Pereira (UTP), período 2026-2.
 
 ## Estructura
 

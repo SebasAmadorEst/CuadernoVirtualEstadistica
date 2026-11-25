@@ -77,26 +77,6 @@ La página 14 representa gráficamente las expresiones de la página 13. Los col
 
 El modo automático utiliza los conjuntos involucrados en la expresión para elegir la representación adecuada. Las regiones vacías también pueden resaltarse: su selección depende de la expresión matemática y no de su cardinalidad.
 
-## 🚀 Cómo ejecutar el proyecto
-
-No se requiere instalar dependencias de JavaScript ni compilar el código.
-
-1. Descarga el repositorio mediante **Code → Download ZIP** en GitHub.
-2. Descomprime el archivo.
-3. Localiza la carpeta que contiene `index.html` y ábrelo en un navegador moderno.
-
-### Alternativa: servidor local
-
-Desde una terminal ubicada en la carpeta que contiene `index.html`, ejecuta:
-
-```bash
-python3 -m http.server 4173
-```
-
-Abre [http://localhost:4173](http://localhost:4173) en el navegador. Para detener el servidor, presiona `Ctrl+C`.
-
-> Se recomienda conexión a Internet para cargar Chart.js y las tipografías externas. Los cálculos y módulos de probabilidad se ejecutan en el navegador.
-
 ## 📁 Estructura del proyecto
 
 Estructura principal, relativa a la carpeta que contiene `index.html`:
@@ -143,6 +123,15 @@ La carpeta `Agente_Estadistica/` contiene documentación teórica, instrucciones
 - **Chart.js:** representación de datos estadísticos.
 - **SVG:** diagramas de Venn dinámicos.
 - **LocalStorage:** almacenamiento local de información.
+
+## 👥 Creadores del cuaderno
+
+- **Camila Mora Pineda**
+- **Juan Sebastián Amador Martínez**
+
+Estudiantes de sexto semestre de Ingeniería de Sistemas y Computación.
+
+**Profesora:** Bibiana Patricia Arias Villada
 
 ## 🎓 Contexto académico
 
